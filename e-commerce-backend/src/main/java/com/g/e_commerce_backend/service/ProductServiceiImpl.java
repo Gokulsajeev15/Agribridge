@@ -17,8 +17,9 @@ public class ProductServiceiImpl implements ProductService {
         return productRepository.findAll();
     }
     @Override
-    public Product addProduct(Product product){
-        return productRepository.save(product);
+    public ResponseEntity<Product> addProduct(Product product){
+        productRepository.save(product);
+        return ResponseEntity.status(201).body(product);
     }
     @Override
     public ResponseEntity<String> removeProduct(Long id){
