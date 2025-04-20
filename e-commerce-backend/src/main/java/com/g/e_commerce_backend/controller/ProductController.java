@@ -1,5 +1,6 @@
 package com.g.e_commerce_backend.controller;
 import com.g.e_commerce_backend.model.Product;
+import com.g.e_commerce_backend.model.ProductDTO;
 import com.g.e_commerce_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,8 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product){
-        return productService.addProduct(product);
-
+    public ResponseEntity<Product> addProduct(@RequestBody ProductDTO productDTO){
+        return productService.addProduct(productDTO);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
-        return productService.updateProduct(id , product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        return productService.updateProduct(id , productDTO);
     }
 
 }

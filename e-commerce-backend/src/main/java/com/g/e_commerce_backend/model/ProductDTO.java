@@ -1,30 +1,12 @@
 package com.g.e_commerce_backend.model;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+public class ProductDTO {
 
     private String name;
     private String description;
     private double price;
+    private Long sellerId;
 
-    @ManyToOne
-    @JoinColumn(name="seller id")
-    private Seller seller;
-
-    public Product(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -49,12 +31,13 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public Seller getSeller() {
-        return seller;
+
+    public Long getSellerId() {
+        return sellerId;
     }
 
-    public void setSeller(Seller seller) {
-        this.seller = seller;
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
     }
 
 }

@@ -1,6 +1,9 @@
 package com.g.e_commerce_backend.service;
 import com.g.e_commerce_backend.model.Product;
+import com.g.e_commerce_backend.model.ProductDTO;
+import com.g.e_commerce_backend.model.Seller;
 import com.g.e_commerce_backend.repository.ProductRepository;
+import com.g.e_commerce_backend.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,13 +14,23 @@ import java.util.List;
 public class ProductServiceiImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    SellerRepository sellerRepository;
 
     @Override
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
     @Override
-    public ResponseEntity<Product> addProduct(Product product){
+    public ResponseEntity<Product> addProduct(ProductDTO productDTO){
+        Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new RuntimeException("Seller not found"));
+
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setPrice(productDTO.getPrice());
+        product.setDescription(productDTO.getDescription());
+        product.setSeller(seller);
+
         productRepository.save(product);
         return ResponseEntity.status(201).body(product);
     }
@@ -31,17 +44,23 @@ public class ProductServiceiImpl implements ProductService {
         }
     }
     @Override
-    public ResponseEntity<Product> updateProduct(Long id, Product product){
+    public ResponseEntity<Product> updateProduct(Long id, ProductDTO productDTO){
         if(productRepository.existsById(id)){
+
             Product existingProduct = productRepository.findById(id).get();
-            if(product.getName()!=null){
-                existingProduct.setName(product.getName());
+            Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new RuntimeException("Seller not found"));
+
+            if(productDTO.getName()!=null){
+                existingProduct.setName(productDTO.getName());
             }
-            if(product.getDescription()!=null){
-                existingProduct.setDescription(product.getDescription());
+            if(productDTO.getDescription()!=null){
+                existingProduct.setDescription(productDTO.getDescription());
             }
-            if(product.getPrice()>0) {
-                existingProduct.setPrice(product.getPrice());
+            if(productDTO.getPrice()>0) {
+                existingProduct.setPrice(productDTO.getPrice());
+            }
+            if(seller!=null) {
+                existingProduct.setSeller(seller);
             }
             productRepository.save(existingProduct);
             return ResponseEntity.status(200).body(existingProduct);
