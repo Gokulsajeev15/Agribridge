@@ -1,24 +1,17 @@
 package com.g.e_commerce_backend.model;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Customer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserRegisterResponseDTO {
     private Long id;
     private String name;
-
-    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
-    private String role = "ROLE_CUSTOMER";
+    public UserRegisterResponseDTO(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 
-    public Customer(){}
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -42,14 +35,4 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
 }
