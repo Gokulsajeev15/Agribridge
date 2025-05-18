@@ -34,5 +34,13 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
         return productService.updateProduct(id , productDTO);
     }
+    @GetMapping("/search")
+    public List<Product> searchProducts(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice
+    ) {
+        return productService.searchProducts(name, minPrice, maxPrice);
+    }
 
 }

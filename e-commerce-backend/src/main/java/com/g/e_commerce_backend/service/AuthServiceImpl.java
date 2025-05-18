@@ -1,5 +1,6 @@
 package com.g.e_commerce_backend.service;
 
+import com.g.e_commerce_backend.exception.ResourceNotFoundException;
 import com.g.e_commerce_backend.model.Customer;
 import com.g.e_commerce_backend.model.UserLoginRequestDTO;
 import com.g.e_commerce_backend.model.UserLoginResponseDTO;
@@ -21,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
     public ResponseEntity<UserRegisterResponseDTO> register(Customer customer) {
         // 1. Check if user already exists
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
-            throw new RuntimeException("User already exists");
+            throw new ResourceNotFoundException("User already exists");
         }
 
         // 2. Hash the password
@@ -43,12 +44,12 @@ public class AuthServiceImpl implements AuthService {
     public ResponseEntity<UserLoginResponseDTO> login(UserLoginRequestDTO loginRequest) {
         // 1. Find user by email
         Customer customer = customerRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         // 2. Check password using BCrypt
         boolean passwordMatch = passwordEncoder.matches(loginRequest.getPassword(), customer.getPassword());
         if (!passwordMatch) {
-            throw new RuntimeException("Invalid credentials");
+            throw new ResourceNotFoundException("Invalid credentials");
         }
 
         // 3. Generate token using JwtUtil

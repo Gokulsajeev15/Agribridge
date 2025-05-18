@@ -11,4 +11,5 @@ public interface OrderService {
     List<OrderResponseDTO> getAllOrders();
     ResponseEntity<OrderResponseDTO> addNewOrder(OrderDTO orderDTO);
     ResponseEntity<String> cancelOrder(Long id);
+    ResponseEntity<String> updateOrderStatus(Long orderId, String status);
 }

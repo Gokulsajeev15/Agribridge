@@ -1,4 +1,5 @@
 package com.g.e_commerce_backend.service;
+import com.g.e_commerce_backend.exception.ResourceNotFoundException;
 import com.g.e_commerce_backend.model.Product;
 import com.g.e_commerce_backend.model.ProductDTO;
 import com.g.e_commerce_backend.model.Seller;
@@ -23,7 +24,7 @@ public class ProductServiceiImpl implements ProductService {
     }
     @Override
     public ResponseEntity<Product> addProduct(ProductDTO productDTO){
-        Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new RuntimeException("Seller not found"));
+        Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new ResourceNotFoundException("Seller not found"));
 
         Product product = new Product();
         product.setName(productDTO.getName());
@@ -48,7 +49,7 @@ public class ProductServiceiImpl implements ProductService {
         if(productRepository.existsById(id)){
 
             Product existingProduct = productRepository.findById(id).get();
-            Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new RuntimeException("Seller not found"));
+            Seller seller=sellerRepository.findById(productDTO.getSellerId()).orElseThrow(()->new ResourceNotFoundException("Seller not found"));
 
             if(productDTO.getName()!=null){
                 existingProduct.setName(productDTO.getName());
@@ -67,5 +68,8 @@ public class ProductServiceiImpl implements ProductService {
         }else{
             return ResponseEntity.status(404).body(null);
         }
+    }
+    public List<Product> searchProducts(String name, Double minPrice, Double maxPrice) {
+        return productRepository.searchProducts(name, minPrice, maxPrice);
     }
 }

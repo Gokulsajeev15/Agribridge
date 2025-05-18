@@ -1,5 +1,6 @@
 package com.g.e_commerce_backend.service;
 
+import com.g.e_commerce_backend.exception.ResourceNotFoundException;
 import com.g.e_commerce_backend.model.*;
 import com.g.e_commerce_backend.repository.CustomerRepository;
 import com.g.e_commerce_backend.repository.OrderItemRepository;
@@ -59,7 +60,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public ResponseEntity<OrderResponseDTO> addNewOrder(OrderDTO orderDTO) {
         Customer customer = customerRepository.findById(orderDTO.getCustomerId())
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
 
             CustomerOrder order =new CustomerOrder();
             order.setCustomer(customer);
@@ -70,7 +71,7 @@ public class OrderServiceImpl implements OrderService{
 
             for (OrderItemDTO orderItem: orderDTO.getItems()){
                 Product product = productRepository.findById(orderItem.getProductId())
-                        .orElseThrow(() -> new RuntimeException("Product not found"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
                 OrderItem orderItems= new OrderItem();
 
@@ -111,7 +112,7 @@ public class OrderServiceImpl implements OrderService{
     }
     public ResponseEntity<String> cancelOrder(Long id) {
         CustomerOrder order = orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
         if (!order.getStatus().equalsIgnoreCase("cancelled")) {
             order.setStatus("cancelled");
@@ -120,5 +121,21 @@ public class OrderServiceImpl implements OrderService{
         } else {
             return ResponseEntity.status(400).body("Order " + id + " is already cancelled.");
         }
+    }
+    public ResponseEntity<String> updateOrderStatus(Long orderId, String status) {
+        List<String> allowedStatuses = List.of("pending", "shipped", "delivered", "cancelled");
+
+        if (!allowedStatuses.contains(status.toLowerCase())) {
+            return ResponseEntity.badRequest()
+                    .body("Invalid status. Allowed values: " + allowedStatuses);
+        }
+
+        CustomerOrder order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+
+        order.setStatus(status.toLowerCase());
+        orderRepository.save(order);
+
+        return ResponseEntity.ok("Order " + orderId + " status updated to '" + status + "'");
     }
 }

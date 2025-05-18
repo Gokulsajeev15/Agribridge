@@ -11,4 +11,6 @@ public interface ProductService {
     ResponseEntity<Product> addProduct(ProductDTO productDTO);
     ResponseEntity<String> removeProduct(Long id);
     ResponseEntity<Product> updateProduct(Long id, ProductDTO productDTO);
+
+    List<Product> searchProducts(String name, Double minPrice, Double maxPrice);
 }

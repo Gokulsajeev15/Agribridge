@@ -29,4 +29,8 @@ public class OrderController {
     public ResponseEntity<String> cancelOrder(@PathVariable Long id) {
         return orderService.cancelOrder(id);
     }
+    @PutMapping("/{id}/status")
+    public ResponseEntity<String> updateOrderStatus(@PathVariable Long id, @RequestParam String value) {
+        return orderService.updateOrderStatus(id, value);
+    }
 }
