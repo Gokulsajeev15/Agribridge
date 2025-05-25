@@ -4,12 +4,12 @@ Agribridge is a modern eCommerce web application for showcasing and selling agri
 
 ## ✨ Features
 
-- 🔍 Live product search with instant filtering
-- 🛒 Add to cart functionality using localStorage
-- 💳 Secure checkout flow with JWT-based authentication
-- 👨‍🌾 Clean product UI using Tailwind CSS
-- 🧠 Smart flow: login is only required to buy, not to browse
-- 🔐 Backend protected with Spring Security
+-   Live product search with instant filtering
+-   Add to cart functionality using localStorage
+-   Secure checkout flow with JWT-based authentication
+-   Clean product UI using Tailwind CSS
+-   Smart flow: login is only required to buy, not to browse
+-   Backend protected with Spring Security
 
 ## 🧱 Tech Stack
 
