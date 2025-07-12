@@ -24,6 +24,6 @@ Agribridge is a modern eCommerce web application for showcasing and selling agri
 ## 📁 Project Structure
 
 ```bash
-/agribridge-frontend     # Frontend (Next.js + Tailwind)
+/agribridge-frontend     # Frontend (React.js)
 /e-commerce-backend      # Spring Boot backend (REST APIs)
 /README.md               # Project overview
