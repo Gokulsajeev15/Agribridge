@@ -1,5 +1,10 @@
 # 🌾 Agribridge – Agricultural eCommerce Platform
 
+
+
+<img width="1470" height="836" alt="Screenshot 2025-07-12 at 01 23 05" src="https://github.com/user-attachments/assets/170e41fc-89a2-49e0-9c36-b424b8417f4e" />
+
+
 Agribridge is a modern eCommerce web application for showcasing and selling agricultural byproducts like rice husk, coconut shell, banana fiber, and more. It allows customers to browse, search, add to cart, and purchase products — while providing a clean, responsive, and mobile-friendly experience.
 
 ## ✨ Features
