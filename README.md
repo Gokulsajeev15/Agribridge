@@ -15,7 +15,6 @@ Agribridge is a modern eCommerce web application for showcasing and selling agri
 
 ### Frontend
 - [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
 
 ### Backend
 - [Spring Boot](https://spring.io/projects/spring-boot)
