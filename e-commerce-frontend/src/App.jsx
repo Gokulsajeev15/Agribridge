@@ -41,19 +41,6 @@ function App() {
               } />
             </Routes>
           </main>
-          
-          {/* Footer at the bottom */}
-          <footer style={{
-            background: '#2d5016',
-            color: 'white',
-            textAlign: 'center',
-            padding: '2rem 0',
-            marginTop: '4rem'
-          }}>
-            <div className="main-container">
-              <p>&copy; 2025 AgriBridge. Transforming Agricultural Waste into Value.</p>
-            </div>
-          </footer>
         </div>
       </Router>
     </AuthProvider>

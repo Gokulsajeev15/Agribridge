@@ -17,7 +17,7 @@ const Home = () => {
       }}>
         <div className="main-container">
           <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>
-            Welcome to AgriBridge 🌾
+            Welcome to AgriBridge
           </h1>
           <p style={{ fontSize: '1.5rem', marginBottom: '2rem' }}>
             Transforming Agricultural Waste into Industrial Raw Materials - Connecting Farmers to Industries
@@ -42,7 +42,6 @@ const Home = () => {
           
           <div className="simple-grid three-columns">
             <div className="simple-card text-center">
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>♻️</div>
               <h3 className="card-header">Sustainable Solutions</h3>
               <p className="card-text">
                 Convert agricultural waste into valuable industrial raw materials. 
@@ -51,7 +50,6 @@ const Home = () => {
             </div>
 
             <div className="simple-card text-center">
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🏭</div>
               <h3 className="card-header">Industrial Supply</h3>
               <p className="card-text">
                 Direct supply of rice husks, wheat straw, coconut coir, and other 
@@ -60,7 +58,6 @@ const Home = () => {
             </div>
 
             <div className="simple-card text-center">
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>💰</div>
               <h3 className="card-header">Fair Pricing</h3>
               <p className="card-text">
                 Farmers get fair compensation for their waste materials while 

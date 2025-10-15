@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
       
       {/* Image placeholder for the waste material */}
       <div className="product-image-box">
-        ♻️
+        <span style={{ fontSize: '2rem', color: '#4caf50' }}>●</span>
       </div>
       
       <div className="product-info">

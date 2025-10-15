@@ -92,12 +92,12 @@ body {
 }
 
 .green-button {
-  background-color: #2d5016;
+  background-color: #4caf50;
   color: white;
 }
 
 .green-button:hover {
-  background-color: #1f3510;
+  background-color: #45a049;
 }
 
 .white-button {

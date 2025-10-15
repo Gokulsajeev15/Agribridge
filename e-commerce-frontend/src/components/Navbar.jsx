@@ -22,7 +22,7 @@ const Navbar = () => {
               style={{ height: '40px', width: 'auto' }}
               onError={(e) => {
                 e.target.style.display = 'none';
-                e.target.nextSibling.textContent = '🌾 AgriBridge';
+                e.target.nextSibling.textContent = 'AgriBridge';
               }}
             />
             <span>AgriBridge</span>
